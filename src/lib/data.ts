@@ -99,4 +99,12 @@ export const projects = [
    },
 ];
 
-export const awards = [];
+export const awards = [
+   {
+      name: 'Dean’s List',
+      issuer: 'University of Information Technology',
+      date: 'Dec 2023',
+      position: 'Top 5%',
+      type: 'Academic',
+   },
+];
