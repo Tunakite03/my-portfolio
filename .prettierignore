@@ -1,0 +1,9 @@
+node_modules
+dist
+.astro
+build
+.netlify
+.vscode
+*.log
+.env
+.DS_Store

@@ -1,36 +1,65 @@
 {
-  "name": "my-portfolio",
-  "type": "module",
-  "version": "0.0.1",
-  "description": "Modern portfolio template with animations and glassmorphism effects",
-  "author": "Rishikesh S",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rishikesh2003/my-portfolio"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/react": "^4.2.1",
-    "@radix-ui/react-slot": "^1.1.2",
-    "@tailwindcss/vite": "^4.0.14",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
-    "aos": "^2.3.4",
-    "astro": "^5.5.3",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.5.0",
-    "lucide-react": "^0.483.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.2",
-    "tailwindcss": "^4.0.14",
-    "tw-animate-css": "^1.2.4"
-  }
+   "name": "my-portfolio",
+   "type": "module",
+   "version": "0.0.1",
+   "description": "Modern portfolio template with animations and glassmorphism effects",
+   "author": "Rishikesh S",
+   "license": "MIT",
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/rishikesh2003/my-portfolio"
+   },
+   "scripts": {
+      "dev": "astro dev",
+      "build": "astro build",
+      "preview": "astro preview",
+      "astro": "astro",
+      "format": "prettier --write .",
+      "format:check": "prettier --check .",
+      "lint": "eslint .",
+      "lint:fix": "eslint . --fix",
+      "lint-staged": "lint-staged",
+      "type-check": "astro check",
+      "prepare": "husky"
+   },
+   "dependencies": {
+      "@astrojs/react": "^4.2.1",
+      "@radix-ui/react-slot": "^1.1.2",
+      "@tailwindcss/vite": "^4.0.14",
+      "@types/react": "^19.0.12",
+      "@types/react-dom": "^19.0.4",
+      "aos": "^2.3.4",
+      "astro": "^5.5.3",
+      "class-variance-authority": "^0.7.1",
+      "clsx": "^2.1.1",
+      "framer-motion": "^12.5.0",
+      "lucide-react": "^0.483.0",
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0",
+      "tailwind-merge": "^3.0.2",
+      "tailwindcss": "^4.0.14",
+      "tw-animate-css": "^1.2.4"
+   },
+   "devDependencies": {
+      "@typescript-eslint/eslint-plugin": "^7.0.0",
+      "@typescript-eslint/parser": "^7.0.0",
+      "eslint": "^8.57.0",
+      "eslint-plugin-astro": "^1.0.0",
+      "eslint-plugin-jsx-a11y": "^6.9.0",
+      "eslint-plugin-react": "^7.35.0",
+      "eslint-plugin-react-hooks": "^4.6.0",
+      "husky": "^9.0.0",
+      "lint-staged": "^15.0.0",
+      "prettier": "^3.3.0",
+      "prettier-plugin-astro": "^0.14.0"
+   },
+   "lint-staged": {
+      "*.{ts,tsx,astro,js,jsx}": [
+         "eslint --fix",
+         "prettier --write"
+      ],
+      "*.{json,md,css}": [
+         "prettier --write"
+      ]
+   }
 }
