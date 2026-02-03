@@ -4,49 +4,50 @@ import TimelineItem from './TimelineItem.astro';
 import { Briefcase } from 'lucide-react';
 ---
 
-<section
-   id='experience'
-   class='py-12 bg-linear-to-b from-muted/20 to-background'
->
-   <div class='container max-w-4xl mx-auto px-6 md:px-4'>
-      <h2 class='text-2xl font-bold mb-8 text-center md:text-left flex items-center md:inline-block section-heading'>
-         <span class='inline-block mr-2 emoji-bounce'>💼</span>{' '}
+<section id="experience" class="py-12 bg-linear-to-b from-muted/20 to-background">
+   <div class="container max-w-4xl mx-auto px-6 md:px-4">
+      <h2
+         class="text-2xl font-bold mb-8 text-center md:text-left flex items-center md:inline-block section-heading"
+      >
+         <span class="inline-block mr-2 emoji-bounce">💼</span>{' '}
          Work Experience
       </h2>
-      
-      <div class='mb-8'>
-         {workExperience.map((job, index) => (
-            <TimelineItem
-               title={`👨‍💻 ${job.position} | ${job.company}`}
-               subtitle={`🌍 ${job.location}`}
-               date={`📅 ${job.period}`}
-               isLast={index === workExperience.length - 1}
-               index={index}
-            >
-               <div 
-                  class='mt-3 p-4 bg-background/80 backdrop-blur-sm backdrop-filter rounded-lg border border-purple-500/20 dark:bg-card/10 dark:border-purple-500/10 shadow-sm achievement-card'
-                  style={`animation-delay: ${index * 0.2 + 0.2}s`}
+
+      <div class="mb-8">
+         {
+            workExperience.map((job, index) => (
+               <TimelineItem
+                  title={`👨‍💻 ${job.position} | ${job.company}`}
+                  subtitle={`🌍 ${job.location}`}
+                  date={`📅 ${job.period}`}
+                  isLast={index === workExperience.length - 1}
+                  index={index}
                >
-                  <div class='flex items-center mb-3'>
-                     <div class='h-6 w-6 flex items-center justify-center rounded-full bg-purple-500/10 mr-2'>
-                        <Briefcase className='h-4 w-4 text-purple-500' />
+                  <div
+                     class="mt-3 p-4 bg-background/80 backdrop-blur-sm backdrop-filter rounded-lg border border-purple-500/20 dark:bg-card/10 dark:border-purple-500/10 shadow-sm achievement-card"
+                     style={`animation-delay: ${index * 0.2 + 0.2}s`}
+                  >
+                     <div class="flex items-center mb-3">
+                        <div class="h-6 w-6 flex items-center justify-center rounded-full bg-purple-500/10 mr-2">
+                           <Briefcase className="h-4 w-4 text-purple-500" />
+                        </div>
+                        <h4 class="text-sm font-medium">Key Achievements</h4>
                      </div>
-                     <h4 class='text-sm font-medium'>Key Achievements</h4>
+                     <ul class="list-none ml-4 space-y-2 text-sm">
+                        {job.achievements.map((achievement, i) => (
+                           <li
+                              class="text-muted-foreground relative pl-6 achievement-item"
+                              style={`animation-delay: ${index * 0.2 + 0.3 + i * 0.1}s`}
+                           >
+                              <span class="absolute left-0 top-1.5 h-1.5 w-1.5 rounded-full bg-purple-500/50" />
+                              {achievement}
+                           </li>
+                        ))}
+                     </ul>
                   </div>
-                  <ul class='list-none ml-4 space-y-2 text-sm'>
-                     {job.achievements.map((achievement, i) => (
-                        <li 
-                           class='text-muted-foreground relative pl-6 achievement-item'
-                           style={`animation-delay: ${index * 0.2 + 0.3 + i * 0.1}s`}
-                        >
-                           <span class='absolute left-0 top-1.5 h-1.5 w-1.5 rounded-full bg-purple-500/50'></span>
-                           {achievement}
-                        </li>
-                     ))}
-                  </ul>
-               </div>
-            </TimelineItem>
-         ))}
+               </TimelineItem>
+            ))
+         }
       </div>
    </div>
 </section>
@@ -75,7 +76,8 @@ import { Briefcase } from 'lucide-react';
    }
 
    @keyframes bounce {
-      0%, 100% {
+      0%,
+      100% {
          transform: rotate(0deg);
       }
       25% {

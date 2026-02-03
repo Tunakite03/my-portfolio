@@ -3,6 +3,6 @@ dist
 .astro
 build
 .netlify
-*.config.js
-*.config.mjs
-*.config.ts
+_.config.js
+_.config.mjs
+\*.config.ts

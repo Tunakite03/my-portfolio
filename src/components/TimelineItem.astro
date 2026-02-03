@@ -12,32 +12,32 @@ interface Props {
 const { title, subtitle, date, isLast = false, index = 0 } = Astro.props;
 ---
 
-<div class='relative flex gap-6 timeline-item' style={`animation-delay: ${index * 0.2}s`}>
-   <div class='flex flex-col items-center'>
-      <div 
-         class='flex h-4.5 w-4.5 rounded-full border border-purple-500/50 bg-background dark:bg-muted z-10 timeline-dot'
+<div class="relative flex gap-6 timeline-item" style={`animation-delay: ${index * 0.2}s`}>
+   <div class="flex flex-col items-center">
+      <div
+         class="flex h-4.5 w-4.5 rounded-full border border-purple-500/50 bg-background dark:bg-muted z-10 timeline-dot"
          style={`animation-delay: ${index * 0.2 + 0.2}s`}
-      ></div>
-      {!isLast && (
-         <div 
-            class='w-px grow bg-linear-to-b from-purple-500/50 to-pink-500/30 dark:from-purple-500/30 dark:to-pink-500/10 timeline-line'
-            style={`animation-delay: ${index * 0.2 + 0.3}s`}
-         ></div>
-      )}
+      >
+      </div>
+      {
+         !isLast && (
+            <div
+               class="w-px grow bg-linear-to-b from-purple-500/50 to-pink-500/30 dark:from-purple-500/30 dark:to-pink-500/10 timeline-line"
+               style={`animation-delay: ${index * 0.2 + 0.3}s`}
+            />
+         )
+      }
    </div>
    <div class={cn('pb-8', isLast ? 'pb-0' : '')}>
-      <div 
-         class='flex flex-col gap-0.5 timeline-content'
+      <div
+         class="flex flex-col gap-0.5 timeline-content"
          style={`animation-delay: ${index * 0.2 + 0.1}s`}
       >
-         <h3 class='font-medium'>{title}</h3>
-         <p class='text-sm text-muted-foreground'>{subtitle}</p>
-         <p class='text-xs text-muted-foreground/70 mb-2'>{date}</p>
+         <h3 class="font-medium">{title}</h3>
+         <p class="text-sm text-muted-foreground">{subtitle}</p>
+         <p class="text-xs text-muted-foreground/70 mb-2">{date}</p>
       </div>
-      <div 
-         class='timeline-children'
-         style={`animation-delay: ${index * 0.2 + 0.4}s`}
-      >
+      <div class="timeline-children" style={`animation-delay: ${index * 0.2 + 0.4}s`}>
          <slot />
       </div>
    </div>

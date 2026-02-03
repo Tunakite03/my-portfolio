@@ -57,11 +57,26 @@ export const education = [
 ];
 export const skills = {
    programmingLanguages: ['TypeScript', 'JavaScript', 'HTML', 'CSS', 'SQL'],
-   frontendDevelopment: ['ReactJS', 'TailwindCSS', 'Redux', 'TanStack Query', 'Zustand', 'Next.js', 'Vite'],
+   frontendDevelopment: [
+      'ReactJS',
+      'TailwindCSS',
+      'Redux',
+      'TanStack Query',
+      'Zustand',
+      'Next.js',
+      'Vite',
+   ],
    backendDevelopment: ['NodeJS', 'ExpressJS', 'NestJS'],
    databaseAndStorage: ['MySQL', 'PostgreSQL', 'Prisma ORM'],
    cloudAndDevOps: ['Git', 'Docker', 'CI/CD'],
-   toolsAndServices: ['RESTful APIs', 'Webpack', 'ESLint', 'Prettier', 'Jest', 'React Testing Library'],
+   toolsAndServices: [
+      'RESTful APIs',
+      'Webpack',
+      'ESLint',
+      'Prettier',
+      'Jest',
+      'React Testing Library',
+   ],
 };
 
 export const projects = [

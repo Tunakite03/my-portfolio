@@ -7,6 +7,7 @@
 - [Features](#-features)
 - [Demo](#-demo)
 - [Getting Started](#-getting-started)
+- [CI/CD & Code Quality](#-cicd--code-quality)
 - [Customization](#-customizing-the-portfolio)
 - [Build & Deploy](#-build-for-production)
 - [Tech Stack](#-tech-stack)
@@ -22,6 +23,9 @@
 - 🧩 **Modular Structure** – Built for easy customization and scalability
 - 🔍 **SEO Friendly** – Structured content and meta tags for better visibility
 - ♿ **Accessible** – WCAG compliant with proper ARIA labels
+- 🔧 **CI/CD Ready** – GitHub Actions workflow with automated testing & deployment
+- ✅ **Pre-commit Hooks** – Automatic code formatting and linting before commit
+- 📝 **Code Quality** – ESLint + Prettier configured and ready to use
 
 ## 🚀 Demo
 
@@ -41,7 +45,7 @@ Make sure you have the following installed:
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/rishikesh2003/my-portfolio.git
+   git clone https://github.com/Tunakite03/my-portfolio.git
    cd my-portfolio
    ```
 
@@ -72,6 +76,78 @@ Make sure you have the following installed:
 4. **Open your browser**
 
    Visit `http://localhost:4321` to see your portfolio in action! 🎉
+
+## 🔧 CI/CD & Code Quality
+
+This template comes with a complete CI/CD pipeline and code quality tools pre-configured.
+
+### ✨ What's Included
+
+- 🔄 **GitHub Actions** – Automated CI/CD pipeline
+- 🪝 **Pre-commit Hooks** – Code quality checks before every commit
+- 🎨 **Prettier** – Automatic code formatting
+- ✅ **ESLint** – Code linting for TypeScript, React, and Astro
+- 🚀 **Auto-deploy** – Automatic deployment to Netlify on push
+
+### 🚀 Quick Start
+
+After installation, the pre-commit hooks are automatically set up. Every time you commit:
+
+```bash
+git commit -m "your message"
+```
+
+The following will run automatically:
+
+1. ✅ ESLint fixes issues
+2. 🎨 Prettier formats your code
+3. 🚫 Blocks commit if there are unfixable errors
+
+### 📝 Available Scripts
+
+```bash
+# Code quality
+npm run format       # Format code with Prettier
+npm run format:check # Check formatting without changes
+npm run lint         # Lint code with ESLint
+npm run lint:fix     # Fix linting issues automatically
+npm run type-check   # Check TypeScript types
+
+# Development
+npm run dev          # Start dev server
+npm run build        # Build for production
+npm run preview      # Preview production build
+```
+
+### 🔄 GitHub Actions Workflow
+
+The CI/CD pipeline runs on every push and pull request:
+
+**Quality Stage:**
+
+- Type checking (Astro Check)
+- Prettier format validation
+- ESLint validation
+
+**Build Stage:**
+
+- Production build
+- Upload artifacts
+
+**Deploy Stage** (main/master branch only):
+
+- Automatic deployment to Netlify
+- Preview deployment for PRs
+
+### ⚙️ Setup Netlify Deployment
+
+1. Add these secrets in **GitHub Repository Settings → Secrets**:
+   - `NETLIFY_AUTH_TOKEN` – From Netlify User Settings → Applications
+   - `NETLIFY_SITE_ID` – From Site Settings → Site details
+
+2. Push to `main` branch – deployment happens automatically! 🎉
+
+For detailed setup instructions, see [CI-CD-SETUP.md](CI-CD-SETUP.md).
 
 ## 🎨 Customizing the Portfolio
 
@@ -247,29 +323,45 @@ vercel
 - **[lucide-react](https://lucide.dev/)** - Beautiful & consistent icons
 - **[class-variance-authority](https://cva.style/)** - CSS-in-TS variants
 
+### Dev Tools & CI/CD
+
+- **[husky](https://typicode.github.io/husky/)** - Git hooks made easy
+- **[lint-staged](https://github.com/okonet/lint-staged)** - Run linters on staged files
+- **[prettier](https://prettier.io/)** - Code formatter
+- **[eslint](https://eslint.org/)** - JavaScript/TypeScript linter
+- **[GitHub Actions](https://github.com/features/actions)** - CI/CD automation
+
 ## � Project Structure
 
 ```
 my-portfolio-template/
-├── public/              # Static assets
+├── .github/
+│   └── workflows/
+│       └── ci.yml          # GitHub Actions CI/CD pipeline
+├── .husky/
+│   └── pre-commit          # Pre-commit hook script
+├── public/                 # Static assets
 ├── src/
-│   ├── components/      # React components
-│   │   ├── ui/         # Reusable UI components
-│   │   ├── HeroSection.tsx
-│   │   ├── ExperienceSection.tsx
-│   │   ├── ProjectsSection.tsx
+│   ├── components/         # React & Astro components
+│   │   ├── ui/            # Reusable UI components
+│   │   ├── HeroSection.astro
+│   │   ├── ExperienceSection.astro
+│   │   ├── ProjectsSection.astro
 │   │   └── ...
-│   ├── layouts/        # Astro layouts
+│   ├── layouts/           # Astro layouts
 │   │   └── Layout.astro
-│   ├── lib/            # Utilities & data
-│   │   ├── data.ts     # 📝 Your content here!
+│   ├── lib/               # Utilities & data
+│   │   ├── data.ts        # 📝 Your content here!
 │   │   └── utils.ts
-│   ├── pages/          # Astro pages
+│   ├── pages/             # Astro pages
 │   │   └── index.astro
-│   └── styles/         # Global styles
+│   └── styles/            # Global styles
 │       └── global.css
-├── astro.config.mjs    # Astro configuration
-├── tailwind.config.js  # Tailwind configuration
+├── .eslintrc.cjs          # ESLint configuration
+├── .prettierrc            # Prettier configuration
+├── astro.config.mjs       # Astro configuration
+├── tailwind.config.js     # Tailwind configuration
+├── CI-CD-SETUP.md         # Detailed CI/CD setup guide
 └── package.json
 ```
 

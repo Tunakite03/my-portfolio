@@ -5,51 +5,47 @@ import { Github } from 'lucide-react';
 import { GlassCard } from './ui/glass-card';
 ---
 
-<section
-   id='projects'
-   class='py-12 relative'
->
-   <div class='container max-w-4xl mx-auto px-6 md:px-4'>
-      <h2 class='text-2xl font-bold mb-8 text-center md:text-left section-heading'>🚀 Projects</h2>
+<section id="projects" class="py-12 relative">
+   <div class="container max-w-4xl mx-auto px-6 md:px-4">
+      <h2 class="text-2xl font-bold mb-8 text-center md:text-left section-heading">🚀 Projects</h2>
 
-      <div class='grid grid-cols-1 md:grid-cols-2 gap-6'>
-         {projects.map((project, index) => (
-            <div 
-               class='project-card'
-               style={`animation-delay: ${index * 0.2}s`}
-            >
-               <GlassCard className='group overflow-hidden dark:border-purple-500/10 h-full flex flex-col'>
-                  <CardHeader className='bg-linear-to-r from-purple-500/5 to-pink-500/5'>
-                     <CardTitle className='text-center md:text-left group-hover:text-purple-500 transition-colors duration-300'>
-                        {project.title}
-                     </CardTitle>
-                  </CardHeader>
-                  <CardContent className='grow'>
-                     <ul class='list-disc ml-4 space-y-1 text-sm group-hover:space-y-2 transition-all duration-300'>
-                        {project.description.map((desc, i) => (
-                           <li 
-                              class='text-muted-foreground project-item'
-                              style={`animation-delay: ${index * 0.2 + i * 0.1}s`}
-                           >
-                              {desc}
-                           </li>
-                        ))}
-                     </ul>
-                  </CardContent>
-                  <CardFooter className='flex justify-center md:justify-start items-center border-t border-border/30 bg-linear-to-r from-purple-500/5 to-pink-500/5'>
-                     <a
-                        href={project.github}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        class='flex items-center text-sm text-muted-foreground hover:text-purple-500 transition-colors github-link pt-8'
-                     >
-                        <Github className='h-4 w-4 mr-2 github-icon' />
-                        View on GitHub 🔗
-                     </a>
-                  </CardFooter>
-               </GlassCard>
-            </div>
-         ))}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         {
+            projects.map((project, index) => (
+               <div class="project-card" style={`animation-delay: ${index * 0.2}s`}>
+                  <GlassCard className="group overflow-hidden dark:border-purple-500/10 h-full flex flex-col">
+                     <CardHeader className="bg-linear-to-r from-purple-500/5 to-pink-500/5">
+                        <CardTitle className="text-center md:text-left group-hover:text-purple-500 transition-colors duration-300">
+                           {project.title}
+                        </CardTitle>
+                     </CardHeader>
+                     <CardContent className="grow">
+                        <ul class="list-disc ml-4 space-y-1 text-sm group-hover:space-y-2 transition-all duration-300">
+                           {project.description.map((desc, i) => (
+                              <li
+                                 class="text-muted-foreground project-item"
+                                 style={`animation-delay: ${index * 0.2 + i * 0.1}s`}
+                              >
+                                 {desc}
+                              </li>
+                           ))}
+                        </ul>
+                     </CardContent>
+                     <CardFooter className="flex justify-center md:justify-start items-center border-t border-border/30 bg-linear-to-r from-purple-500/5 to-pink-500/5">
+                        <a
+                           href={project.github}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="flex items-center text-sm text-muted-foreground hover:text-purple-500 transition-colors github-link pt-8"
+                        >
+                           <Github className="h-4 w-4 mr-2 github-icon" />
+                           View on GitHub 🔗
+                        </a>
+                     </CardFooter>
+                  </GlassCard>
+               </div>
+            ))
+         }
       </div>
    </div>
 </section>
