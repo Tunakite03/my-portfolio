@@ -7,13 +7,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function GlassHeader() {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
    const [isScrolled, setIsScrolled] = useState(false);
+   const [isHidden, setIsHidden] = useState(false);
 
    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
    useEffect(() => {
+      let lastScrollY = window.scrollY;
+
       const handleScroll = () => {
+         const currentScrollY = window.scrollY;
+
          // Thu nhỏ header khi scroll xuống 50px
-         setIsScrolled(window.scrollY > 50);
+         setIsScrolled(currentScrollY > 50);
+
+         // Ẩn header khi scroll xuống, hiện khi scroll lên
+         if (currentScrollY > lastScrollY && currentScrollY > 150) {
+            setIsHidden(true);
+         } else if (currentScrollY < lastScrollY) {
+            setIsHidden(false);
+         }
+
+         lastScrollY = currentScrollY;
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -21,9 +35,13 @@ export default function GlassHeader() {
    }, []);
 
    return (
-      <header className='sticky top-1 z-50 w-full backdrop-blur-md backdrop-filter bg-background/70 dark:bg-background/40 border-b border-border/40 supports-backdrop-filter:bg-background/60 transition-all duration-300'>
+      <header
+         className={`sticky z-50 w-full backdrop-blur-md backdrop-filter bg-background/10 dark:bg-background/10 border-b border-border/40 supports-backdrop-filter:bg-background/10 transition-all duration-300 ${
+            isHidden ? '-top-24' : 'top-0'
+         } ${isScrolled ? 'scale-95 rounded-3xl' : ''}`}
+      >
          <div
-            className={`container max-w-4xl mx-auto flex justify-between items-center transition-all duration-300 p-4 ${isScrolled ? 'scale-95' : ''}`}
+            className={`container max-w-4xl mx-auto flex justify-between items-center transition-all duration-300 p-4 `}
          >
             <motion.a
                className={`flex items-center font-medium transition-all duration-300`}

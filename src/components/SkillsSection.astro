@@ -1,0 +1,110 @@
+---
+import { skills } from '@/lib/data';
+import { GlassCard } from './ui/glass-card';
+
+const skillCategories = [
+   { icon: '💻', title: 'Programming Languages', skills: skills.programmingLanguages },
+   { icon: '🎨', title: 'Frontend Development', skills: skills.frontendDevelopment },
+   { icon: '⚙️', title: 'Backend Development', skills: skills.backendDevelopment },
+   { icon: '🗄️', title: 'Database & Storage', skills: skills.databaseAndStorage },
+   { icon: '☁️', title: 'Cloud & DevOps', skills: skills.cloudAndDevOps },
+   { icon: '🧰', title: 'Tools & Services', skills: skills.toolsAndServices },
+];
+---
+
+<section
+   id='skills'
+   class='py-12 bg-linear-to-b from-background to-muted/20'
+>
+   <div class='container max-w-4xl mx-auto px-6 md:px-4'>
+      <h2 class='text-2xl font-bold mb-8 text-center md:text-left section-heading'>🛠️ Skills</h2>
+
+      <div class='space-y-6'>
+         {skillCategories.map((category, catIndex) => (
+            <div class='skill-category' style={`animation-delay: ${catIndex * 0.1}s`}>
+               <GlassCard className='p-4'>
+                  <h3 class='text-lg font-medium mb-3 text-center md:text-left flex items-center'>
+                     <span class='mr-2 text-xl'>{category.icon}</span> {category.title}
+                  </h3>
+                  <div class='flex flex-wrap gap-2 justify-center md:justify-start'>
+                     {category.skills.map((skill, skillIndex) => (
+                        <div 
+                           class='skill-tag'
+                           style={`animation-delay: ${catIndex * 0.1 + skillIndex * 0.05}s`}
+                        >
+                           {skill}
+                        </div>
+                     ))}
+                  </div>
+               </GlassCard>
+            </div>
+         ))}
+      </div>
+   </div>
+</section>
+
+<style>
+   @keyframes fadeInUp {
+      from {
+         opacity: 0;
+         transform: translateY(20px);
+      }
+      to {
+         opacity: 1;
+         transform: translateY(0);
+      }
+   }
+
+   @keyframes scaleIn {
+      from {
+         opacity: 0;
+         transform: scale(0.8);
+      }
+      to {
+         opacity: 1;
+         transform: scale(1);
+      }
+   }
+
+   .section-heading {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+   }
+
+   .skill-category {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+   }
+
+   .skill-tag {
+      padding: 0.25rem 0.75rem;
+      background-color: hsl(var(--muted) / 0.8);
+      backdrop-filter: blur(4px);
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      border: 1px solid hsl(var(--purple-500) / 0.1);
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      opacity: 0;
+      animation: scaleIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+   }
+
+   .skill-tag:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .section-heading,
+      .skill-category,
+      .skill-tag {
+         animation: none;
+         opacity: 1;
+         transform: none;
+      }
+
+      .skill-tag:hover {
+         transform: none;
+      }
+   }
+</style>

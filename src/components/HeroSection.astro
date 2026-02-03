@@ -1,0 +1,136 @@
+---
+import { personalInfo } from '@/lib/data';
+import { Mail, Github, MapPin } from 'lucide-react';
+---
+
+<section class='py-16 md:py-24 relative overflow-hidden hero-section'>
+   <div class='container max-w-4xl mx-auto px-6 md:px-4 relative z-10'>
+      <div class='flex flex-col md:flex-row md:items-center justify-between mb-8'>
+         <div class='text-center md:text-left'>
+            <h1 class='text-4xl font-bold mb-2 animate-fade-in'>
+               {personalInfo.name} <span class='inline-block animate-pulse'></span>
+            </h1>
+
+            <p class='text-xl text-muted-foreground mb-6 animate-fade-in-delay-1'>
+               Software Engineer 👨‍💻
+            </p>
+
+            <div class='flex flex-col gap-2 items-center md:items-start'>
+               <div class='flex items-center text-sm text-muted-foreground hover-lift animate-fade-in-delay-2'>
+                  <MapPin className='h-4 w-4 mr-2' />
+                  📍 {personalInfo.location}
+               </div>
+
+               <a
+                  href={`mailto:${personalInfo.email}`}
+                  class='flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors hover-lift animate-fade-in-delay-3'
+               >
+                  <Mail className='h-4 w-4 mr-2' />
+                  ✉️ {personalInfo.email}
+               </a>
+
+               <a
+                  href={personalInfo.github}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  class='flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors hover-lift animate-fade-in-delay-4'
+               >
+                  <Github className='h-4 w-4 mr-2' />
+                  🌟 GitHub
+               </a>
+            </div>
+         </div>
+
+         <div class='mt-6 md:mt-0 flex justify-center animate-fade-in-delay-5'>
+            <div class='relative profile-image-wrapper'>
+               <div class='absolute -inset-1 bg-linear-to-r from-pink-500 to-purple-500 rounded-full blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200'></div>
+               <img
+                  src={personalInfo.profilePicture}
+                  alt='Profile'
+                  class='w-48 md:w-60 rounded-full relative ring-2 ring-purple-500/50'
+                  style='object-fit: cover;'
+               />
+            </div>
+         </div>
+      </div>
+
+      <div class='bg-linear-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm backdrop-filter p-4 rounded-lg border border-purple-500/20 dark:border-purple-500/10 shadow-sm animate-fade-in-delay-6'>
+         <p class='text-muted-foreground pl-4 py-2 mb-4 relative'>
+            <span class='absolute left-0 top-0 h-full w-1 bg-linear-to-b from-purple-500 to-pink-500 rounded-full'></span>
+            {personalInfo.heroDescription}
+         </p>
+      </div>
+   </div>
+</section>
+
+<style>
+   @keyframes fadeInUp {
+      from {
+         opacity: 0;
+         transform: translateY(20px);
+      }
+      to {
+         opacity: 1;
+         transform: translateY(0);
+      }
+   }
+
+   @keyframes float {
+      0%, 100% {
+         transform: translateY(0px);
+      }
+      50% {
+         transform: translateY(-10px);
+      }
+   }
+
+   .animate-fade-in {
+      animation: fadeInUp 0.6s ease-out forwards;
+   }
+
+   .animate-fade-in-delay-1 {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.2s forwards;
+   }
+
+   .animate-fade-in-delay-2 {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.4s forwards;
+   }
+
+   .animate-fade-in-delay-3 {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.6s forwards;
+   }
+
+   .animate-fade-in-delay-4 {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.8s forwards;
+   }
+
+   .animate-fade-in-delay-5 {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 1s forwards;
+   }
+
+   .animate-fade-in-delay-6 {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 1.2s forwards;
+   }
+
+   .hover-lift {
+      transition: transform 0.3s ease;
+   }
+
+   .hover-lift:hover {
+      transform: scale(1.05);
+   }
+
+   .profile-image-wrapper {
+      animation: float 3s ease-in-out infinite;
+   }
+
+   .profile-image-wrapper:hover {
+      animation-play-state: paused;
+   }
+</style>

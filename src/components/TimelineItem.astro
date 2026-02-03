@@ -1,0 +1,126 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+   title: string;
+   subtitle: string;
+   date: string;
+   isLast?: boolean;
+   index?: number;
+}
+
+const { title, subtitle, date, isLast = false, index = 0 } = Astro.props;
+---
+
+<div class='relative flex gap-6 timeline-item' style={`animation-delay: ${index * 0.2}s`}>
+   <div class='flex flex-col items-center'>
+      <div 
+         class='flex h-4.5 w-4.5 rounded-full border border-purple-500/50 bg-background dark:bg-muted z-10 timeline-dot'
+         style={`animation-delay: ${index * 0.2 + 0.2}s`}
+      ></div>
+      {!isLast && (
+         <div 
+            class='w-px grow bg-linear-to-b from-purple-500/50 to-pink-500/30 dark:from-purple-500/30 dark:to-pink-500/10 timeline-line'
+            style={`animation-delay: ${index * 0.2 + 0.3}s`}
+         ></div>
+      )}
+   </div>
+   <div class={cn('pb-8', isLast ? 'pb-0' : '')}>
+      <div 
+         class='flex flex-col gap-0.5 timeline-content'
+         style={`animation-delay: ${index * 0.2 + 0.1}s`}
+      >
+         <h3 class='font-medium'>{title}</h3>
+         <p class='text-sm text-muted-foreground'>{subtitle}</p>
+         <p class='text-xs text-muted-foreground/70 mb-2'>{date}</p>
+      </div>
+      <div 
+         class='timeline-children'
+         style={`animation-delay: ${index * 0.2 + 0.4}s`}
+      >
+         <slot />
+      </div>
+   </div>
+</div>
+
+<style>
+   @keyframes fadeInUp {
+      from {
+         opacity: 0;
+         transform: translateY(20px);
+      }
+      to {
+         opacity: 1;
+         transform: translateY(0);
+      }
+   }
+
+   @keyframes fadeInLeft {
+      from {
+         opacity: 0;
+         transform: translateX(-20px);
+      }
+      to {
+         opacity: 1;
+         transform: translateX(0);
+      }
+   }
+
+   @keyframes scaleIn {
+      from {
+         opacity: 0;
+         transform: scale(0);
+      }
+      to {
+         opacity: 1;
+         transform: scale(1);
+      }
+   }
+
+   @keyframes growHeight {
+      from {
+         height: 0;
+      }
+      to {
+         height: 100%;
+      }
+   }
+
+   .timeline-item {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+   }
+
+   .timeline-dot {
+      opacity: 0;
+      animation: scaleIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+   }
+
+   .timeline-line {
+      height: 0;
+      animation: growHeight 0.8s ease-out forwards;
+   }
+
+   .timeline-content {
+      opacity: 0;
+      animation: fadeInLeft 0.5s ease-out forwards;
+   }
+
+   .timeline-children {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .timeline-item,
+      .timeline-dot,
+      .timeline-line,
+      .timeline-content,
+      .timeline-children {
+         animation: none;
+         opacity: 1;
+         transform: none;
+         height: auto;
+      }
+   }
+</style>

@@ -1,0 +1,102 @@
+---
+import { education } from '@/lib/data';
+import TimelineItem from './TimelineItem.astro';
+import { Award } from 'lucide-react';
+---
+
+<section
+   id='education'
+   class='py-12 bg-linear-to-b from-muted/10 to-background'
+>
+   <div class='container max-w-4xl mx-auto px-6 md:px-4'>
+      <h2 class='text-2xl font-bold mb-8 text-center md:text-left section-heading'>🎓 Education</h2>
+
+      <div class='mb-8'>
+         {education.map((edu, index) => (
+            <TimelineItem
+               title={`🎓 ${edu.degree}`}
+               subtitle={`🏛️ ${edu.institution}`}
+               date={`📅 ${edu.period}`}
+               isLast={index === education.length - 1}
+               index={index}
+            >
+               <p class='text-sm text-muted-foreground mb-3'>📍 {edu.location}</p>
+
+               {edu.achievements && edu.achievements.length > 0 && (
+                  <div 
+                     class='mt-3 p-4 bg-background/80 backdrop-blur-sm backdrop-filter rounded-lg border border-purple-500/20 dark:bg-card/10 dark:border-purple-500/10 shadow-sm achievement-card'
+                     style={`animation-delay: ${index * 0.2 + 0.2}s`}
+                  >
+                     <div class='flex items-center mb-3'>
+                        <div class='h-6 w-6 flex items-center justify-center rounded-full bg-purple-500/10 mr-2'>
+                           <Award className='h-4 w-4 text-purple-500' />
+                        </div>
+                        <h4 class='text-sm font-medium'>Achievements & Activities</h4>
+                     </div>
+                     <ul class='list-none ml-4 space-y-2 text-sm'>
+                        {edu.achievements.map((achievement, i) => (
+                           <li 
+                              class='text-muted-foreground relative pl-6 achievement-item'
+                              style={`animation-delay: ${index * 0.2 + 0.3 + i * 0.1}s`}
+                           >
+                              <span class='absolute left-0 top-1.5 h-1.5 w-1.5 rounded-full bg-purple-500/50'></span>
+                              {achievement}
+                           </li>
+                        ))}
+                     </ul>
+                  </div>
+               )}
+            </TimelineItem>
+         ))}
+      </div>
+   </div>
+</section>
+
+<style>
+   @keyframes fadeInUp {
+      from {
+         opacity: 0;
+         transform: translateY(20px);
+      }
+      to {
+         opacity: 1;
+         transform: translateY(0);
+      }
+   }
+
+   @keyframes fadeInLeft {
+      from {
+         opacity: 0;
+         transform: translateX(-10px);
+      }
+      to {
+         opacity: 1;
+         transform: translateX(0);
+      }
+   }
+
+   .section-heading {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+   }
+
+   .achievement-card {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+   }
+
+   .achievement-item {
+      opacity: 0;
+      animation: fadeInLeft 0.3s ease-out forwards;
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .section-heading,
+      .achievement-card,
+      .achievement-item {
+         animation: none;
+         opacity: 1;
+         transform: none;
+      }
+   }
+</style>

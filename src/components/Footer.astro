@@ -1,0 +1,89 @@
+---
+import { personalInfo } from '@/lib/data';
+---
+
+<footer class='border-t border-purple-500/10 py-6 bg-linear-to-b from-background to-muted/20 backdrop-blur-sm footer-section'>
+   <div class='container max-w-4xl mx-auto px-6 md:px-4'>
+      <div class='flex flex-col md:flex-row justify-between items-center'>
+         <p class='text-sm text-muted-foreground text-center md:text-left hover-lift'>
+            &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+         </p>
+         <p class='text-sm text-muted-foreground mt-2 md:mt-0 text-center md:text-left hover-lift footer-built-with'>
+            Built with{' '}
+            <span class='inline-block emoji-rotate'>💻</span>{' '}
+            and{' '}
+            <span class='inline-block heart-beat'>❤️</span>
+         </p>
+      </div>
+   </div>
+</footer>
+
+<style>
+   @keyframes fadeInUp {
+      from {
+         opacity: 0;
+         transform: translateY(20px);
+      }
+      to {
+         opacity: 1;
+         transform: translateY(0);
+      }
+   }
+
+   @keyframes heartBeat {
+      0%, 100% {
+         transform: scale(1);
+      }
+      50% {
+         transform: scale(1.2);
+      }
+   }
+
+   .footer-section {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out forwards;
+   }
+
+   .hover-lift {
+      transition: transform 0.2s ease;
+   }
+
+   .hover-lift:hover {
+      transform: scale(1.01);
+   }
+
+   .emoji-rotate {
+      transition: transform 0.5s ease;
+   }
+
+   .emoji-rotate:hover {
+      transform: rotate(360deg);
+   }
+
+   .heart-beat {
+      animation: heartBeat 1.5s ease-in-out infinite;
+   }
+
+   .footer-built-with {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease-out 0.2s forwards;
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+      .footer-section,
+      .footer-built-with {
+         animation: none;
+         opacity: 1;
+         transform: none;
+      }
+
+      .hover-lift:hover,
+      .emoji-rotate:hover {
+         transform: none;
+      }
+
+      .heart-beat {
+         animation: none;
+      }
+   }
+</style>
